@@ -3,7 +3,9 @@
 //
 // author: A.O.S
 
-package sourceinfo
+// package sourceinfo is a helper around runtime Caller which simplifies
+// fetching source information using frames.
+package sourceinfo // import "github.com/A-0-5/ohno/pkg/sourceinfo"
 
 import (
 	"path"

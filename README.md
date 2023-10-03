@@ -9,3 +9,9 @@
 The [`ohno`](pkg/ohno) package on the other hand will help you to add more information to an error like source location information (file, line, function) along with timestamps, custom messages, nesting and joining. This also has friendly helper methods to marshal your errors in to `json` or `yaml` formats.
 
 You can use either [`ohnogen`](cmd/ohnogen) tool or the [`ohno`](pkg/ohno) package independently of each other based on your use case subject certain interface constraints being met when using the [`ohno`](pkg/ohno) package standalone which is explained in the [`ohno`](pkg/ohno) package documentation. You can however use the [`ohnogen`](cmd/ohnogen) tool to generate your errors and use them without the [`ohno`](pkg/ohno) package as long as you don't want additional context being stored in your error.
+
+## Go References
+
+- **[ohno](https://pkg.go.dev/github.com/A-0-5/ohno@v0.0.1/pkg/ohno)**
+- **[ohnogen](https://pkg.go.dev/github.com/A-0-5/ohno/cmd/ohnogen)**
+- **[usage examples](https://pkg.go.dev/github.com/A-0-5/ohno/examples)**
