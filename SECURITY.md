@@ -10,5 +10,4 @@ Security fixes shall be made available to the following versions
 
 
 ## Reporting a Vulnerability
-If you find a vulnerability please send your report privately to [achyuthontisrinivasan@gmail.com](mailto:achyuthontisrinivasan@gmail.com?subject=[GitHub]%20ohno%20Vulnerability%20Report).
-Please DO NOT file a public issue.
+If you find a vulnerability please send your report privately by clicking the report vulnerability button at the top of this [page](https://github.com/A-0-5/ohno/security). Please DO NOT open a public issue on the issue board.
