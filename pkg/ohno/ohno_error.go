@@ -188,11 +188,11 @@ func (o *OhNoError) removeCauseAndAppendRecursive(errs []error) []error {
 }
 
 type ohNoMarshalError struct {
+	CausedBy    error                         `json:"caused_by,omitempty" yaml:"caused_by,omitempty"`
+	SourceInfo  *sourceinfo.SourceInformation `json:"source_information,omitempty" yaml:"source_information,omitempty"`
 	Package     string                        `json:"package" yaml:"package"`
 	Code        string                        `json:"code" yaml:"code"`
 	Name        string                        `json:"name" yaml:"name"`
 	Description string                        `json:"description" yaml:"description"`
 	TimeStamp   string                        `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
-	SourceInfo  *sourceinfo.SourceInformation `json:"source_information,omitempty" yaml:"source_information,omitempty"`
-	CausedBy    error                         `json:"caused_by,omitempty" yaml:"caused_by,omitempty"`
 }
