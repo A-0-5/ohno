@@ -36,8 +36,8 @@ const (
 // This structure contains the information about the source code.
 type SourceInformation struct {
 	File     string `json:"file" yaml:"file"`
-	Line     int    `json:"line" yaml:"line"`
 	Function string `json:"function,omitempty" yaml:"function,omitempty"`
+	Line     int    `json:"line" yaml:"line"`
 }
 
 // This function prints the source information in the format
