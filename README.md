@@ -1,4 +1,4 @@
-![ohno_banner](./assets/ohno_banner.png)
+![ohno](./assets/ohno_banner.png)
 ---
 
 [![godoc_badge](./assets/go_ref_badge.svg)](https://pkg.go.dev/github.com/A-0-5/ohno)

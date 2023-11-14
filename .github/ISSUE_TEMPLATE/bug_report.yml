@@ -1,0 +1,55 @@
+name: Bug Report
+description: File a defect related to this project
+title: '[BUG]'
+labels:
+- bug
+body:
+- type: input
+  attributes:
+    label: Version
+    description: Version of the module in which you encountered this issue
+    placeholder: 'for eg: v.0.0.1'
+  validations:
+      required: true
+- type: dropdown
+  attributes:
+    label: Component
+    description: Which component are you seeing this issue in?
+    options:
+    - ohno (package)
+    - ohnogen (tool/cli)
+    - sourceinfo (package)
+  validations:
+      required: true
+- type: dropdown
+  attributes:
+    label: Category
+    multiple: true
+    description: This bug is affects to
+    options:
+      - Performance
+      - Functionality
+      - Comprehensibility (Documentation)
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Issue Description
+    description: What happened?
+    placeholder: Tell us what happened, if you have any steps to reproduce the behavior it would be great!
+  validations:
+      required: true
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: What was supposed to happen?
+    placeholder: Tell us what was supposed to happen
+  validations:
+      required: true
+- type: checkboxes
+  attributes:
+    label: Code of Conduct
+    description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/A-0-5/ohno?tab=coc-ov-file#readme)
+    options:
+      - label: I agree to follow this project's Code of Conduct
+        required: true

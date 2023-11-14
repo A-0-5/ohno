@@ -73,6 +73,8 @@
 //	    	trim the prefix from the generated constant names
 //	  -type string
 //	    	comma-separated list of type names; must be set
+//	  -version
+//	    	prints the current version information of this tool
 //
 // # Usage Example
 //
@@ -247,6 +249,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime/debug"
 	"sort"
 	"strings"
 
@@ -260,6 +263,7 @@ var (
 	ohnoFlag     = flag.Bool("ohno", false, "generate the OhNo method for using with ohno package")
 	codeBaseFlag = flag.Int("formatbase", 10, "format in which the enum value needs to be printed in different use cases.\nValid options are 2(binary), 8(octal),10(decimal), 16(hex).\ndefault -formatbase=10")
 	buildTags    = flag.String("tags", "", "comma-separated list of build tags to apply")
+	versionInfo  = flag.Bool("version", false, "prints the current version information of this tool")
 )
 
 // Usage is a replacement usage function for the flags package.
@@ -275,9 +279,18 @@ func Usage() {
 
 func main() {
 	log.SetFlags(0)
-	log.SetPrefix("stringer: ")
+	log.SetPrefix("ohnogen: ")
 	flag.Usage = Usage
 	flag.Parse()
+	if *versionInfo {
+		info, ok := debug.ReadBuildInfo()
+		if !ok {
+			fmt.Fprintf(os.Stdout, "cannot retrieve version information at the moment\n")
+			os.Exit(2)
+		}
+		fmt.Fprintf(os.Stdout, "ohnogen\n-------\nversion : %s\nsum     : %s\n", info.Main.Version, info.Main.Sum)
+		os.Exit(0)
+	}
 	if len(*typeNames) == 0 {
 		flag.Usage()
 		os.Exit(2)
