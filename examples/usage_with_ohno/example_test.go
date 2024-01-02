@@ -186,28 +186,35 @@ func ExampleMyFabulousOhNoError_marshal() {
 	// Output:
 	// json:
 	// {
+	//   "additional_info": {
+	//     "BadStuff": "some data here"
+	//   },
+	//   "source_information": {
+	//     "file": "example_test.go",
+	//     "function": "github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo",
+	//     "line": 23
+	//   },
 	//   "package": "usage_with_ohno",
 	//   "code": "0x6a",
 	//   "name": "Fatal",
+	//   "message": "something really bad happened",
 	//   "description": "Help!!! Im dying!!!",
-	//   "timestamp": "1970-01-01 00:00:00",
-	//   "source_information": {
-	//     "file": "example_test.go",
-	//     "line": 23,
-	//     "function": "github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo"
-	//   }
+	//   "timestamp": "1970-01-01 00:00:00"
 	// }
 	//
 	// yaml:
+	// additional_info:
+	//     badstuff: some data here
+	// source_information:
+	//     file: example_test.go
+	//     function: github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo
+	//     line: 23
 	// package: usage_with_ohno
 	// code: "0x6a"
 	// name: Fatal
+	// message: something really bad happened
 	// description: Help!!! Im dying!!!
 	// timestamp: "1970-01-01 00:00:00"
-	// source_information:
-	//     file: example_test.go
-	//     line: 23
-	//     function: github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo
 }
 
 // There may be cases where you may get an error with deep nesting and when
@@ -280,59 +287,75 @@ func ExampleMyFabulousOhNoError_convertToJoinError() {
 	// ----
 	//
 	// json representation of nested error{
-	//   "package": "usage_with_ohno",
-	//   "code": "0x67",
-	//   "name": "Unknown",
-	//   "description": "I don't know what happened",
-	//   "timestamp": "1970-01-01 00:10:00",
+	//   "additional_info": "level-2 nesting",
 	//   "caused_by": {
-	//     "package": "usage_with_ohno",
-	//     "code": "0x66",
-	//     "name": "Internal",
-	//     "description": "Its not you, its me :(",
-	//     "timestamp": "1970-01-01 00:05:00",
+	//     "additional_info": "level-1 nesting",
 	//     "caused_by": {
+	//       "additional_info": {
+	//         "BadStuff": "some data here"
+	//       },
+	//       "source_information": {
+	//         "file": "example_test.go",
+	//         "function": "github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo",
+	//         "line": 23
+	//       },
 	//       "package": "usage_with_ohno",
 	//       "code": "0x6a",
 	//       "name": "Fatal",
+	//       "message": "something really bad happened",
 	//       "description": "Help!!! Im dying!!!",
-	//       "timestamp": "1970-01-01 00:00:00",
-	//       "source_information": {
-	//         "file": "example_test.go",
-	//         "line": 23,
-	//         "function": "github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo"
-	//       }
-	//     }
-	//   }
+	//       "timestamp": "1970-01-01 00:00:00"
+	//     },
+	//     "package": "usage_with_ohno",
+	//     "code": "0x66",
+	//     "name": "Internal",
+	//     "message": "this error wraps fooErr",
+	//     "description": "Its not you, its me :(",
+	//     "timestamp": "1970-01-01 00:05:00"
+	//   },
+	//   "package": "usage_with_ohno",
+	//   "code": "0x67",
+	//   "name": "Unknown",
+	//   "message": "this error wraps barErr",
+	//   "description": "I don't know what happened",
+	//   "timestamp": "1970-01-01 00:10:00"
 	// }
 	//
 	// json representation of flattened error{
 	//   "errors": [
 	//     {
+	//       "additional_info": "level-2 nesting",
 	//       "package": "usage_with_ohno",
 	//       "code": "0x67",
 	//       "name": "Unknown",
+	//       "message": "this error wraps barErr",
 	//       "description": "I don't know what happened",
 	//       "timestamp": "1970-01-01 00:10:00"
 	//     },
 	//     {
+	//       "additional_info": "level-1 nesting",
 	//       "package": "usage_with_ohno",
 	//       "code": "0x66",
 	//       "name": "Internal",
+	//       "message": "this error wraps fooErr",
 	//       "description": "Its not you, its me :(",
 	//       "timestamp": "1970-01-01 00:05:00"
 	//     },
 	//     {
+	//       "additional_info": {
+	//         "BadStuff": "some data here"
+	//       },
+	//       "source_information": {
+	//         "file": "example_test.go",
+	//         "function": "github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo",
+	//         "line": 23
+	//       },
 	//       "package": "usage_with_ohno",
 	//       "code": "0x6a",
 	//       "name": "Fatal",
+	//       "message": "something really bad happened",
 	//       "description": "Help!!! Im dying!!!",
-	//       "timestamp": "1970-01-01 00:00:00",
-	//       "source_information": {
-	//         "file": "example_test.go",
-	//         "line": 23,
-	//         "function": "github.com/A-0-5/ohno/examples/usage_with_ohno_test.Foo"
-	//       }
+	//       "timestamp": "1970-01-01 00:00:00"
 	//     }
 	//   ]
 	// }
