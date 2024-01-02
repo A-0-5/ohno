@@ -131,6 +131,8 @@ func (o *OhNoError) marshalableError() *ohNoMarshalError {
 	marshalErr.Code = ohnoer.Code()
 	marshalErr.Name = ohnoer.String()
 	marshalErr.Description = ohnoer.Description()
+	marshalErr.Message = o.Message
+	marshalErr.AdditionalInfo = o.Extra
 
 	if !o.Timestamp.IsZero() {
 		if o.TimestampLayout == "" {
@@ -188,11 +190,13 @@ func (o *OhNoError) removeCauseAndAppendRecursive(errs []error) []error {
 }
 
 type ohNoMarshalError struct {
-	CausedBy    error                         `json:"caused_by,omitempty" yaml:"caused_by,omitempty"`
-	SourceInfo  *sourceinfo.SourceInformation `json:"source_information,omitempty" yaml:"source_information,omitempty"`
-	Package     string                        `json:"package" yaml:"package"`
-	Code        string                        `json:"code" yaml:"code"`
-	Name        string                        `json:"name" yaml:"name"`
-	Description string                        `json:"description" yaml:"description"`
-	TimeStamp   string                        `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
+	AdditionalInfo any                           `json:"additional_info,omitempty" yaml:"additional_info,omitempty"`
+	CausedBy       error                         `json:"caused_by,omitempty" yaml:"caused_by,omitempty"`
+	SourceInfo     *sourceinfo.SourceInformation `json:"source_information,omitempty" yaml:"source_information,omitempty"`
+	Package        string                        `json:"package" yaml:"package"`
+	Code           string                        `json:"code" yaml:"code"`
+	Name           string                        `json:"name" yaml:"name"`
+	Message        string                        `json:"message,omitempty" yaml:"message,omitempty"`
+	Description    string                        `json:"description" yaml:"description"`
+	TimeStamp      string                        `json:"timestamp,omitempty" yaml:"timestamp,omitempty"`
 }
